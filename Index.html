@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Riddle for You 💖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff4081;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .heart-decoration {
+            color: #ff4081;
+            margin: 0 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .riddle-container {
+            background: linear-gradient(145deg, #ffecf1, #fff0f5);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.15);
+            border: 2px solid #ffccd5;
+        }
+
+        .riddle-container h2 {
+            color: #ff4081;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .riddle-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .answer-input {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .answer-input input {
+            padding: 15px 20px;
+            border: 2px solid #ffccd5;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .answer-input input:focus {
+            border-color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, #ff4081, #ff8a80);
+            color: white;
+        }
+
+        .btn-hint {
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            color: white;
+        }
+
+        .btn-reset {
+            background: linear-gradient(to right, #7b4397, #dc2430);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .message-container {
+            display: none;
+            background: linear-gradient(145deg, #e3f2fd, #f3e5f5);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #bbdefb;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-container h2 {
+            color: #ff4081;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .romantic-message {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .birthday-container {
+            display: none;
+            background: linear-gradient(145deg, #fff9c4, #ffecb3);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-out;
+            border: 2px solid #ffd54f;
+        }
+
+        .birthday-container h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff6f00;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cake {
+            font-size: 5rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: sparkleMove 3s infinite;
+        }
+
+        @keyframes sparkleMove {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .hint-box {
+            background-color: rgba(187, 222, 251, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .hint-box p {
+            color: #1565c0;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .riddle-text {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .romantic-message {
+                font-size: 1.5rem;
+            }
+            
+            .birthday-container h2 {
+                font-size: 3rem;
+            }
+            
+            .cake {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .riddle-text {
+                font-size: 1.2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A Love Riddle for You <i class="fas fa-heart heart-decoration"></i></h1>
+            <p>Solve this romantic riddle to reveal a special message and a birthday surprise! Use your heart to find the answer.</p>
+        </div>
+        
+        <div class="content">
+            <div class="riddle-container">
+                <h2><i class="fas fa-question-circle"></i> The Riddle</h2>
+                <div class="riddle-text">
+                    "I'm not a touch, but I can be felt.<br>
+                    I'm not a sound, but I can be heard.<br>
+                    I'm not a sight, but I can be seen.<br>
+                    I grow with attention, yet wither if mean.<br>
+                    What am I?"
+                </div>
+                
+                <div class="answer-input">
+                    <input type="text" id="answer-input" placeholder="Type your answer here...">
+                    <div class="buttons">
+                        <button class="btn btn-submit" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Answer
+                        </button>
+                        <button class="btn btn-hint" id="hint-btn">
+                            <i class="fas fa-lightbulb"></i> Need a Hint?
+                        </button>
+                        <button class="btn btn-reset" id="reset-btn">
+                            <i class="fas fa-redo"></i> Try Again
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hint-box" id="hint-box">
+                    <p><strong>Hint:</strong> It's a four-letter word that begins with 'L' and is the most powerful emotion in the world. It's what makes life beautiful!</p>
+                </div>
+            </div>
+            
+            <div class="message-container" id="message-container">
+                <h2>You Solved It! <i class="fas fa-heart"></i></h2>
+                <div class="romantic-message">
+                    Just like this riddle, my feelings for you are eternal and true. 
+                    You light up my world in ways words can't describe. 
+                    Every moment with you is a treasure, and my heart beats only for you. 
+                    You are the answer to all my questions and the solution to every puzzle in my life.
+                </div>
+                <button class="btn btn-submit" id="birthday-reveal-btn">
+                    <i class="fas fa-birthday-cake"></i> Reveal Birthday Surprise
+                </button>
+            </div>
+            
+            <div class="birthday-container" id="birthday-container">
+                <h2>Happy Birthday Wasiii! <i class="fas fa-birthday-cake"></i></h2>
+                <div class="cake">🎂</div>
+                <p style="font-size: 1.5rem; color: #ff6f00; margin-bottom: 20px;">
+                    May your special day be filled with joy, laughter, and all the love in the world!
+                </p>
+                <p style="font-size: 1.3rem; color: #555; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    On this wonderful day, I wish you endless happiness, success in all your endeavors, 
+                    and a life filled with beautiful moments. You deserve all the best that life has to offer!
+                </p>
+                <div style="margin-top: 30px; font-size: 1.2rem; color: #7b4397;">
+                    With all my love and warmest wishes on your birthday! 💖
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Made with <i class="fas fa-heart" style="color: #ff4081;"></i> for a special person</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const answerInput = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const hintBtn = document.getElementById('hint-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const hintBox = document.getElementById('hint-box');
+        const messageContainer = document.getElementById('message-container');
+        const birthdayRevealBtn = document.getElementById('birthday-reveal-btn');
+        const birthdayContainer = document.getElementById('birthday-container');
+        
+        // Correct answer (case insensitive)
+        const correctAnswer = "love";
+        
+        // Submit answer functionality
+        submitBtn.addEventListener('click', checkAnswer);
+        answerInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+        
+        function checkAnswer() {
+            const userAnswer = answerInput.value.trim().toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                // Show success message
+                messageContainer.style.display = 'block';
+                messageContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Create confetti effect
+                createSparkles(50);
+                
+                // Play success sound (optional)
+                playSuccessSound();
+            } else {
+                // Shake animation for wrong answer
+                answerInput.style.borderColor = '#ff1744';
+                answerInput.style.animation = 'shake 0.5s';
+                
+                setTimeout(() => {
+                    answerInput.style.animation = '';
+                }, 500);
+                
+                // Show hint after 2 wrong attempts (simplified)
+                if (Math.random() > 0.5) {
+                    hintBox.style.display = 'block';
+                }
+            }
+        }
+        
+        // Hint button functionality
+        hintBtn.addEventListener('click', function() {
+            hintBox.style.display = hintBox.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Reset button functionality
+        resetBtn.addEventListener('click', function() {
+            answerInput.value = '';
+            hintBox.style.display = 'none';
+            answerInput.style.borderColor = '#ffccd5';
+            answerInput.focus();
+        });
+        
+        // Birthday reveal button functionality
+        birthdayRevealBtn.addEventListener('click', function() {
+            birthdayContainer.style.display = 'block';
+            birthdayContainer.scrollIntoView({ behavior: 'smooth' });
+            
+            // Create lots of sparkles
+            createSparkles(100);
+            
+            // Add cake animation
+            const cake = document.querySelector('.cake');
+            cake.style.animation = 'bounce 1s infinite';
+            
+            // Play birthday music (optional)
+            playBirthdayMusic();
+        });
+        
+        // Function to create sparkles
+        function createSparkles(count) {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // Random position
+                const left = Math.random() * 100;
+                const size = Math.random() * 15 + 5;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                
+                sparkle.style.left = `${left}%`;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.animationDuration = `${duration}s`;
+                sparkle.style.animationDelay = `${delay}s`;
+                
+                // Random color for sparkles
+                const colors = ['#ff4081', '#ffeb3b', '#4caf50', '#2196f3', '#ff9800'];
+                sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+        
+        // Function to play success sound
+        function playSuccessSound() {
+            // Create a simple beep sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 523.25; // C5
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 1);
+            } catch (e) {
+                console.log("Audio context not supported");
+            }
+        }
+        
+        // Function to play birthday music
+        function playBirthdayMusic() {
+            // Play happy birthday tune using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Notes for Happy Birthday (simplified)
+                const notes = [
+                    { freq: 392, duration: 0.5 }, // G
+                    { freq: 392, duration: 0.5 }, // G
+                    { freq: 440, duration: 1 },   // A
+                    { freq: 392, duration: 1 },   // G
+                    { freq: 523, duration: 1 },   // C
+                    { freq: 494, duration: 2 }    // B
+                ];
+                
+                let time = audioContext.currentTime;
+                
+                notes.forEach(note => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = note.freq;
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0.3, time);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, time + note.duration);
+                    
+                    oscillator.start(time);
+                    oscillator.stop(time + note.duration);
+                    
+                    time += note.duration;
+                });
+            } catch (e) {
+                console.log("Audio context not supported");
+            }
+        }
+        
+        // Initialize with some sparkles
+        window.addEventListener('load', function() {
+            createSparkles(20);
+            answerInput.focus();
+        });
+    </script>
+</body>
+</html>
